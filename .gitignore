@@ -1,0 +1,14 @@
+# Created by .ignore support plugin (hsz.mobi)
+venv
+CapstoneFinalProject-5be08202b757.json
+test.jpg
+test2.jpg
+test3.JPG
+test4.jpg
+test.py
+
+.idea/vcs.xml
+.idea/workspace.xml
+Face_Recognition/FaceApp/__pycache__/
+Face_Recognition/FaceApp/migrations/__pycache__/
+Face_Recognition/Face_Recognition/__pycache__/

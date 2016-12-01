@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<html lang="en-GB">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+
+
+     <title>Face-Expression</title>
+    <link rel="stylesheet" href="../../static/style.css">
+</head>
+<body>
+<div class="Container" id="pic">
+    <!--<form class="Load-image" action="/" method="post">-->
+    <!--<form class="Load-image" >-->
+        <img src="" height="400" width="500" id="image"/>
+        {% csrf_token %}
+        <br/>
+        <button type="submit" value=" " class="button" id="load"> Load</button>
+        <button type="submit" value=" " class="button"> Analyse</button>
+    <!--</form>-->
+    <script>
+    $("#load").click(function ()
+    {
+//    var imgUrl = $(this).data('rel');
+    $("#image").attr("src", "/static/test.jpg");
+});
+    </script>
+
+
+
+</div>
+</body>
+</html>
+
+
+
