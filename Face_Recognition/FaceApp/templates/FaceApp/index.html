@@ -12,7 +12,7 @@
 <div class="Container" id="pic">
     <!--<form class="Load-image" action="/" method="post">-->
     <!--<form class="Load-image" >-->
-        <img src="" height="400" width="500" id="image"/>
+        <img src="" height="500" width="500" id="image" name="Image"/>
         {% csrf_token %}
         <br/>
         <button type="submit" value=" " class="button" id="load"> Load</button>
@@ -21,7 +21,6 @@
     <script>
     $("#load").click(function ()
     {
-//    var imgUrl = $(this).data('rel');
     $("#image").attr("src", "/static/test.jpg");
 });
     </script>
