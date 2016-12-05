@@ -17,9 +17,10 @@
 """Draws squares around faces in the given image."""
 import os
 import sys
+#from test import face
 
 
-#
+
 sys.path.append(r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2")
 os.environ['PATH'] = (r" /Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2;"
                       + os.environ['PATH'])
@@ -33,6 +34,7 @@ import apiclient
 from oauth2client.client import GoogleCredentials
 from PIL import Image
 from PIL import ImageDraw
+import json
 
 
 # [START get_vision_service]
@@ -73,56 +75,26 @@ def detect_face(face_file, max_results=20):
     return response
 
 
-# def highlight_faces(image, faces, output_filename):
-#     """Draws a polygon around the faces, then saves to output_filename.
-#     Args:
-#       image: a file containing the image with the faces.
-#       faces: a list of faces found in the file. This should be in the format
-#           returned by the Vision API.
-#       output_filename: the name of the image file to be created, where the
-#           faces have polygons drawn around them.
-#     """
-#     im = Image.open(image)
-#     draw = ImageDraw.Draw(im)
-#
-#     for face in faces:
-#         box = [(v.get('x', 0.0), v.get('y', 0.0))
-#                for v in face['fdBoundingPoly']['vertices']]
-#         draw.line(box + [box[0]], width=5, fill='#00ff00')
-#
-#     im.save(output_filename)
-
-
-def main(input_filename, output_filename, max_results):
-
-    with open(input_filename, 'rb') as image:
-        # faces = detect_face(image, max_results)['responses'][0]['faceAnnotations']
-        faces = detect_face(image, max_results)
-        #face is a list of faces found in image. If 4 faces, then faceAnnotation contains
-        # analysis of 4 faces in a  list
-        # to fetch first face, use response['responses'][0]['faceAnnotations'][0]
-        # to fetch 'joyLikelihood' of first face, use response['responses'][0]['faceAnnotations'][0]['joyLikelihood']
-        for face in range(0, len(faces)):
-            temp = {}
-            temp = faces['responses'][0]['faceAnnotations']
-            face_reult =[]
-            for things in temp:
-                print("The expressions for the face ", temp.index(things))
-                print("The blurred expressions are", things['blurredLikelihood'])
-                print("The joy likelyhood is", things['joyLikelihood'])
-                print("The anger likelyhood is", things['angerLikelihood'])
-
-            return face_reult
-
-        # print('Found {} face{}'.format(
-        #     len(faces), '' if len(faces) == 1 else 's'))
-
-
-        # print('Writing to file {}'.format(output_filename))
-        # Reset the file pointer, so we can read the file again
-        # image.seek(0)
-        # highlight_faces(image, faces, output_filename)
+# This method calls detec_face method which makes an API call to get the response: A sample response is in test.py
+def face_result(face_file, max_results):
+        with open(face_file, 'rb') as image:
+            faces = detect_face(image, max_results)
+            im = Image.open(image)
+            for face in range(0, len(faces)):
+                face_result = faces['responses'][0]['faceAnnotations']
+                for things in face_result:
+                    # vertices_to_draw_poly = faces['responses'][0]['faceAnnotations'][0]["boundingPoly"]['vertices']
+                    vertices_to_draw_poly = things["boundingPoly"]['vertices']
+                    draw = ImageDraw.Draw(im)
+                    box = ()
+                    for v in vertices_to_draw_poly:
+                        temp = (
+                        v.get('x', vertices_to_draw_poly[0]['x']), v.get('y', vertices_to_draw_poly[0]['y']))
+                        box = box + temp
+                    draw.line(box + box[0:2], width=5, fill='#00ff00')
+        im.save('Image_analysed.jpg')
 
 
 if __name__ == '__main__':
-    main(r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/test.jpg", 'out.jpg', 20)
+    face_file_path = r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/test.jpg"
+    face_result(face_file_path, 20)
