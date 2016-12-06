@@ -1,9 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import sys, os
+sys.path.append(r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/Face_Recognition")
+os.environ['PATH'] = (r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/Face_Recognition;"
+                      + os.environ['PATH'])
 
-from Face_Recognition.API_Tools.face_API import face_result
 from . models import Image_model as mod
-from ..API_Tools.face_API import face_result
+from Face_Recognition.API_Tools.face_API import *
+# from Face_Recognition.API_Tools.face_API import face_result
+
 # Create your views here.
 
 
@@ -15,4 +20,5 @@ def index(request):
     elif request.method == "POST":
         image_to_eval = request.POST.get('Image')
         image_result = face_result(image_to_eval, 20)
+        return render(image_result, 'FaceApp/index.html')
 
