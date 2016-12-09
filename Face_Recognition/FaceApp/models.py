@@ -4,5 +4,11 @@ from django.db import models
 
 
 class Image_model(models.Model):
-    image = models.CharField(max_length=300, null=False)
-    Saved_on = models.DateTimeField(null=False, auto_now=True)
+    image = models.ImageField(upload_to='images/')
+    Saved_on = models.DateTimeField(auto_now_add=True)
+
+class Analysed_model(models.Model):
+    image = models.ImageField(upload_to='images/')
+    Saved_on = models.DateTimeField(auto_now_add=True)
+
+

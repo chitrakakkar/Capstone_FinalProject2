@@ -9,27 +9,67 @@
     <link rel="stylesheet" href="../../static/style.css">
 </head>
 <body>
-<div class="Container" id="pic">
-    <!--<form class="Load-image" action="/" method="post">-->
-    <!--<form class="Load-image" >-->
-        <img src="" height="500" width="500" id="image" name="Image"/>
-        {% csrf_token %}
-        <br/>
-        <button type="submit" value=" " class="button" id="load"> Load</button>
-        <button type="submit" value=" " class="button"> Analyse</button>
-    <!--</form>-->
+
+<form action="#" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+   <center>
+      <table>
+         <tr>
+            <td colspan="2">
+               <div id="fullsized_image_holder"><center><img id="imgs" name="Image" src=""  width="400px" height="500px" ></center></div>
+                <a href="#" onclick="this.href = $('#imgs').attr('src');" download="download.jpg">Analyse</a>
+            </td>
+         </tr>
+         <tr>
+            <td align="right"><b><label for="file">Filename:</label></b></td>
+            <td><input type="file" name="file" id="file" onchange="imgchange(this)"></td>
+         </tr>
+      </table>
+   </center>
+   <div class="get-face-detected" id="facet-detect">
+       <button>Get face detected </button>
+
+   </div>
+</form>
+
     <script>
-    $("#load").click(function ()
-    {
-    $("#image").attr("src", "/static/test.jpg");
-});
+        function imgchange(f)
+        {
+           var filePath = $('#file').val();
+           var reader = new FileReader();
+           reader.onload = function (e)
+           {
+
+              $('#imgs').attr('src',e.target.result);
+           };
+
+           reader.readAsDataURL(f.files[0]);
+            return e.target.result
+        }
+
     </script>
 
 
 
-</div>
 </body>
 </html>
 
+<!--<div class="Container" id="pic">-->
+       <!--<form method="post" enctype="multipart/form-data">-->
+            <!--{% csrf_token %}-->
+    <!--<input type="file" name="myfile">-->
+           <!--<img src="" height="500" width="500" id="image" name="Image"/>&ndash;&gt;-->
+    <!--<button type="submit" id="Upload">Upload</button></form>-->
+
+    <!--&lt;!&ndash;<form class="Load-image" action="/" method="post">&ndash;&gt;-->
+        <!--&lt;!&ndash;<form class="Load-image">&ndash;&gt;-->
+             <!--&lt;!&ndash;{% csrf_token %}&ndash;&gt;-->
+        <!--&lt;!&ndash;<img src="" height="500" width="500" id="image" name="Image"/>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<button type="submit" value=" " class="button" id="load"> Load</button>&ndash;&gt;-->
+
+  <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--&lt;!&ndash;</form>&ndash;&gt;-->
 
 

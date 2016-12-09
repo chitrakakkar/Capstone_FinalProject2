@@ -17,25 +17,29 @@
 """Draws squares around faces in the given image."""
 import os
 import sys
-from sqlite3 import OperationalError
-
-from pylab import *
+sys.path.append(r"/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages")
 sys.path.append(r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2")
 os.environ['PATH'] = (r" /Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2;"
                       + os.environ['PATH'])
+os.environ['PATH'] = (r" Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages;"
+                      + os.environ['PATH'])
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join("/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/", 'CapstoneFinalProject-5be08202b757.json')
-
-
+# from matplotlib.pyplot import title
+# from matplotlib.figure import Figure as figure
+# from matplotlib.axes import Axes as axes
+import matplotlib.pylab
+__doc__ = matplotlib.pylab.__doc__
+from pylab import *
 import base64
-# from apiclient import channel , discovery, errors , http, mimeparse, model, schema #discovery #from apiclient
 import apiclient
 from oauth2client.client import GoogleCredentials
 from PIL import Image
 from PIL import ImageDraw
 
-
 # [START get_vision_service]
+
+
 def get_vision_service():
     credentials = GoogleCredentials.get_application_default()
     return apiclient.discovery.build('vision', 'v1', credentials=credentials)
@@ -52,6 +56,7 @@ def detect_face(face_file, max_results=20):
         An array of dicts with information about the faces in the picture.
     """
     image_content = face_file.read()
+
     batch_request = [{
         'image': {
             'content': base64.b64encode(image_content).decode('utf-8')
@@ -75,11 +80,15 @@ def detect_face(face_file, max_results=20):
 
 # This method calls detec_face method which makes an API call to get the response: A sample response is in test.py
 def face_result(face_file, max_results):
+
     with open(face_file, 'rb') as image:
         faces = detect_face(image)
+        print("Here", faces)
         im = Image.open(image)
         for face in range(0, len(faces)):
             face_result = faces['responses'][0]['faceAnnotations']
+            # face_result = faces['responses']
+            print(faces)
             for things in face_result:
                 # vertices_to_draw_poly = faces['responses'][0]['faceAnnotations'][0]["boundingPoly"]['vertices']
                 vertices_to_draw_poly = things["boundingPoly"]['vertices']
@@ -98,8 +107,9 @@ def face_result(face_file, max_results):
                 text_position = (text_x_position, text_y_position)
                 print("I am the text position", text_position)
                 draw.text((text_position,), str(face_result.index(things)), (255, 255, 255))
-        im.save('Image.jpg')
-    return "Image.jpg"
+                #im.show()
+        #im.save(r'/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/Face_Recognition/media/Image_Analysed.jpg')
+        return im
 
 
 def draw_pie_chart(get_expression, image_number):
@@ -107,7 +117,7 @@ def draw_pie_chart(get_expression, image_number):
  # make a square figure and axes
  fraction_division = ()
  # The slices will be ordered and plotted counter-clockwise.
- labels = ['sorrowLikelihood','joyLikelihood', 'angerLikelihood','surpriseLikelihood']
+ labels = ['sorrowLikelihood', 'joyLikelihood', 'angerLikelihood', 'surpriseLikelihood']
  for label in labels:
   figure(image_number, figsize=(6, 6))
   ax = axes([0.1, 0.1, 0.8, 0.8])
@@ -122,11 +132,17 @@ def draw_pie_chart(get_expression, image_number):
      # everything is rotated counter-clockwise by 90 degrees,
      # so the plotting starts on the positive y-axis.
      title('Face ' + str(image_number )+ ' Expressions', bbox={'facecolor': '0.8', 'pad': 5})
-     savefig('figname' + str(image_number)+ '.png', transparent=True)
+     savefig(r'/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/Face_Recognition/media/' + str(image_number)+ '.png', transparent=True)
   except:
-      print("Face not found")
+      print("Blurred Faces found")
 
 
 if __name__ == '__main__':
     face_file_path = r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/test3.jpg"
     face_result(face_file_path, 20)
+
+# def face():
+#     face_file_path = r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/Face_Recognition/media/download.jpg"
+#     status = face_result(face_file_path, 20)
+#     return status
+
