@@ -2,11 +2,12 @@
 <html lang="en-GB">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <meta charset="utf-8">
 
 
      <title>Face-Expression</title>
-    <link rel="stylesheet" href="../../static/style.css">
+         <link rel="stylesheet" type="text/css" href="{% static 'Style.css' %}"/>
 </head>
 <body>
 
@@ -15,21 +16,23 @@
    <center>
       <table>
          <tr>
+             <h3>Face-analysis app</h3>
             <td colspan="2">
-               <div id="fullsized_image_holder"><center><img id="imgs" name="Image" src=""  width="400px" height="500px" ></center></div>
-                <a href="#" onclick="this.href = $('#imgs').attr('src');" download="download.jpg">Analyse</a>
+               <div id="fullsized_image_holder"><center><img id="imgs" name="Image" src=""  width="400px" height="500px" style="padding-top: 5%"></center></div>
+                <!--<a href="#" onclick="this.href = $('#imgs').attr('src');" download="download.jpg">Analyse</a>-->
             </td>
          </tr>
          <tr>
-            <td align="right"><b><label for="file">Filename:</label></b></td>
+            <!--<td align="left"><b><label for="file">Filename:</label></b></td>-->
             <td><input type="file" name="file" id="file" onchange="imgchange(this)"></td>
+             <td align="left" ><button>Get face Detected</button></td>
          </tr>
       </table>
    </center>
-   <div class="get-face-detected" id="facet-detect">
-       <button>Get face detected </button>
+   <!--<div class="get-face-detected" id="facet-detect">-->
+       <!--<button>Get face detected </button>-->
 
-   </div>
+   <!--</div>-->
 </form>
 
     <script>
@@ -53,23 +56,5 @@
 
 </body>
 </html>
-
-<!--<div class="Container" id="pic">-->
-       <!--<form method="post" enctype="multipart/form-data">-->
-            <!--{% csrf_token %}-->
-    <!--<input type="file" name="myfile">-->
-           <!--<img src="" height="500" width="500" id="image" name="Image"/>&ndash;&gt;-->
-    <!--<button type="submit" id="Upload">Upload</button></form>-->
-
-    <!--&lt;!&ndash;<form class="Load-image" action="/" method="post">&ndash;&gt;-->
-        <!--&lt;!&ndash;<form class="Load-image">&ndash;&gt;-->
-             <!--&lt;!&ndash;{% csrf_token %}&ndash;&gt;-->
-        <!--&lt;!&ndash;<img src="" height="500" width="500" id="image" name="Image"/>&ndash;&gt;-->
-
-        <!--&lt;!&ndash;<br/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<button type="submit" value=" " class="button" id="load"> Load</button>&ndash;&gt;-->
-
-  <!--&lt;!&ndash;</form>&ndash;&gt;-->
-        <!--&lt;!&ndash;</form>&ndash;&gt;-->
 
 

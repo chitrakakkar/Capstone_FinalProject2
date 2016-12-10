@@ -1,0 +1,13 @@
+html,
+body{
+  background-color: chocolate;
+
+}
+
+ h3 {
+     text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
+     0 0 0.2em #87F;
+     padding-right: 80%;
+     text-decoration: underline;
+     color: white;
+ }

@@ -80,19 +80,18 @@ def detect_face(face_file, max_results=20):
 
 # This method calls detec_face method which makes an API call to get the response: A sample response is in test.py
 def face_result(face_file, max_results):
-
     with open(face_file, 'rb') as image:
         faces = detect_face(image)
-        print("Here", faces)
         im = Image.open(image)
+        pie_im_list =[]
         for face in range(0, len(faces)):
             face_result = faces['responses'][0]['faceAnnotations']
             # face_result = faces['responses']
-            print(faces)
             for things in face_result:
                 # vertices_to_draw_poly = faces['responses'][0]['faceAnnotations'][0]["boundingPoly"]['vertices']
                 vertices_to_draw_poly = things["boundingPoly"]['vertices']
-                draw_pie_chart(things, face_result.index(things))
+                pie_im_list.append(draw_pie_chart(things, face_result.index(things)))
+                # draw_pie_chart(things,face_result.index(things))
                 # im = Image.new('RGBA', (400, 400), (0, 255, 0, 0))
                 draw = ImageDraw.Draw(im)
                 # print("The expressions for the face ", face_reult.index(things))
@@ -105,11 +104,10 @@ def face_result(face_file, max_results):
                 text_x_position = (float(box[0]) + float(box[2])) / 2
                 text_y_position = (float(box[1]) + float(box[3])) / 2 - 20
                 text_position = (text_x_position, text_y_position)
-                print("I am the text position", text_position)
                 draw.text((text_position,), str(face_result.index(things)), (255, 255, 255))
                 #im.show()
         #im.save(r'/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/Face_Recognition/media/Image_Analysed.jpg')
-        return im
+        return im, pie_im_list
 
 
 def draw_pie_chart(get_expression, image_number):
@@ -119,27 +117,29 @@ def draw_pie_chart(get_expression, image_number):
  # The slices will be ordered and plotted counter-clockwise.
  labels = ['sorrowLikelihood', 'joyLikelihood', 'angerLikelihood', 'surpriseLikelihood']
  for label in labels:
-  figure(image_number, figsize=(6, 6))
-  ax = axes([0.1, 0.1, 0.8, 0.8])
-  Temp_Tuple=()
-  Temp_Tuple = (exprresion_dict.get(get_expression[label]),)
-  fraction_division = fraction_division + Temp_Tuple
-  try:
-     pie(fraction_division, labels=labels,
+      figure(image_number, figsize=(6, 6))
+      ax = axes([0.1, 0.1, 0.8, 0.8])
+      Temp_Tuple=()
+      Temp_Tuple = (exprresion_dict.get(get_expression[label]),)
+      fraction_division = fraction_division + Temp_Tuple
+ pie(fraction_division, labels=labels,
          autopct='%1.1f%%', colors=('#4C59FF', '#33D90D', '#DB1200', '#FFB21A',), shadow=True, startangle=90)
      # The default startangle is 0, which would start
      # the Frogs slice on the x-axis.  With startangle=90,
      # everything is rotated counter-clockwise by 90 degrees,
      # so the plotting starts on the positive y-axis.
-     title('Face ' + str(image_number )+ ' Expressions', bbox={'facecolor': '0.8', 'pad': 5})
-     savefig(r'/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/Face_Recognition/media/' + str(image_number)+ '.png', transparent=True)
-  except:
-      print("Blurred Faces found")
+ title('Face ' + str(image_number)+ ' Expressions', bbox={'facecolor': '0.8', 'pad': 5})
+ pie_chart_file = r'/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/Face_Recognition/media/image' + str(image_number)+ '.png'
+ savefig(pie_chart_file, transparent=True)
+ print("Blurred Faces found")
+ return pie_chart_file
 
 
-if __name__ == '__main__':
-    face_file_path = r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/test3.jpg"
-    face_result(face_file_path, 20)
+
+
+# if __name__ == '__main__':
+#     face_file_path = r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/test3.jpg"
+#     face_result(face_file_path, 20)
 
 # def face():
 #     face_file_path = r"/Users/chitrakakkar/PycharmProjects/Capstone_FinalProject2/Face_Recognition/media/download.jpg"

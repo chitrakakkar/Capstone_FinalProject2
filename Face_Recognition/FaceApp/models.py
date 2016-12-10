@@ -7,8 +7,9 @@ class Image_model(models.Model):
     image = models.ImageField(upload_to='images/')
     Saved_on = models.DateTimeField(auto_now_add=True)
 
-class Analysed_model(models.Model):
-    image = models.ImageField(upload_to='images/')
+
+class chart_model(models.Model):
+    image = models.ForeignKey(Image_model)
     Saved_on = models.DateTimeField(auto_now_add=True)
 
 
