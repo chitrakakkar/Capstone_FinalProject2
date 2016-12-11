@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face-Detection</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+
+
+</head>
+<body style="background-color: chocolate">
+<form action="#" method="post" id = "Face-Analysis">
+    {% csrf_token %}
+    <div id="Images-container">
+    <div id="fullsized_image_holder" style="display: inline-block;float: left"><img id="imgs" name="Image" src="{{file_name}}" width="400px" height="500px" ></div>
+
+    <div id="Chart-image" style="display: inline-block; overflow:auto;float: right"><img id="chart-img" name="chart"  src="{{Pie}}"width="600px" height="600px" ></div>
+        </div>
+
+
+
+    <!--<button id="get-chart" name="chart">Get Analysis-chart</button>-->
+
+    </form>
+
+</body>
+</html>
