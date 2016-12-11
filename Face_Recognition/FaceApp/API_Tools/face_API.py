@@ -111,7 +111,10 @@ def face_result(face_file, max_results):
 
 
 def draw_pie_chart(get_expression, image_number):
- exprresion_dict ={'UNKNOWN':1.39, 'VERY_UNLIKELY' : 4.17 , 'UNLIKELY':6.94  ,'POSSIBLE':12.50  ,'VERY_LIKELY': 50.00 } # 180 Degree out of 360
+ matplotlib.rcParams['text.color'] = 'w'
+ matplotlib.rcParams['lines.linewidth'] = 5
+ matplotlib.rcParams['font.size'] = 15
+ exprresion_dict ={'UNKNOWN': 1.39, 'VERY_UNLIKELY': 4.17, 'UNLIKELY': 6.94, 'POSSIBLE': 12.50, 'VERY_LIKELY': 50.00} # 180 Degree out of 360
  # make a square figure and axes
  fraction_division = ()
  # The slices will be ordered and plotted counter-clockwise.
