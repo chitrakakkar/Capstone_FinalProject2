@@ -12,7 +12,12 @@
 <form action="#" method="post" id = "Face-Analysis">
     {% csrf_token %}
     <div id="Images-container">
-    <div id="fullsized_image_holder" style="display: inline-block;float: left"><img id="imgs" name="Image" src="{{file_name}}" width="400px" height="500px" ></div>
+    <div id="title">
+        <h3 style="float:left;text-shadow: 0 0 0.2em #87F; text-decoration: underline;color: white;padding-right: 85%;">Face-Detected</h3>
+     <h3 style="float: right;padding-right: 5%;text-shadow: 0 0 0.2em #87F; text-decoration: underline;color: white;">Expression-chart</h3></div>
+
+    <div id="fullsized_image_holder" style="display: inline-block;float: left"><img id="imgs" name="Image" src="{{file_name}}" width="550px" height="600px" style="padding-top:10%;float: left" ></div>
+
 
     <div id="Chart-image" style="display: inline-block; overflow:auto;float: right"><img id="chart-img" name="chart"  src="{{Pie}}"width="600px" height="600px" ></div>
         </div>
@@ -25,3 +30,4 @@
 
 </body>
 </html>
+<!--<style="border-top: double;width:1300px;height: 700px;border-bottom: double" >-->

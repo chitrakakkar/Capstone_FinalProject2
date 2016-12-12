@@ -59,7 +59,7 @@ def convert_pillow_file2(file_to_convert):
 
 def chart_image_stiching(pi_im_list):
     color = (255, 255, 255)
-    new_im = Image.new(mode='RGBA', size=(600, 600), color=(255, 255, 255))
+    new_im = Image.new(mode='RGBA', size=(600, 600))
     list_of_CO=[(0, 0), (0, 300), (300, 0), (300, 300)]
 
     for pie in pi_im_list:

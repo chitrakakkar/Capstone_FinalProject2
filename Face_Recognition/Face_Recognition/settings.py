@@ -127,3 +127,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
     os.path.join(BASE_DIR, 'static/bootstrap-3.3.4'),
 )
+# THUMBNAIL_PRESERVE_FORMAT = True
+THUMBNAIL_COLORSPACE = None
