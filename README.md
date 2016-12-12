@@ -12,6 +12,7 @@ The code is written using Python version 3.4 and Django 1.10.3. The API is a goo
 
 ##Known issues
 I am not sure but the API does not detect all the faces and can break the code. Though I have done some error handling, it can still break the code as the image format dependencies are yet unknown. Needs more testing’s and error handlings.
+• One bug I found out yesterday that if the uploaded picture has a resolution more than 720*600, the chart displays the labels twice/thrice. 
 
 
 ##Future development
@@ -19,3 +20,4 @@ I am not sure but the API does not detect all the faces and can break the code. 
 
 •	I need to test the application more to see where it fails and fix the issue. I am sure it’s not 100 % robust right now.
 •	I want to figure out a way so that I can display as many as charts I want so that people can see it. Right now it’s coded in such a way that it displays only 4 charts or else can break it.
+• Last but not the least, I want to use my Raspberry -pi to use the camera and send the pic to the Django server.
