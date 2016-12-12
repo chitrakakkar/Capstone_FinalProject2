@@ -19,6 +19,11 @@ I am not sure but the API does not detect all the faces and can break the code. 
 ##Future development
 •	I have installed Simple CV and Open CV to use a live camera to take the picture and upload the pic from there but here is some issue while importing it. Need to fix that.
 
+
 •	I need to test the application more to see where it fails and fix the issue. I am sure it’s not 100 % robust right now.
+
+
 •	I want to figure out a way so that I can display as many as charts I want so that people can see it. Right now it’s coded in such a way that it displays only 4 charts or else can break it.
+
+
 • Last but not the least, I want to use my Raspberry -pi to use the camera and send the pic to the Django server.
