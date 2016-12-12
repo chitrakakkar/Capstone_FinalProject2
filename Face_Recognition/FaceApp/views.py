@@ -30,6 +30,7 @@ def index(request):
         return render(request, 'FaceApp/Analysed.html', {'file_name': analysed_face_data.image.url, 'Pie':pie_chart_data.image.url})
 
 
+# converts the Pillow image with faces detected to django files
 def convert_pillow_file(file_to_convert):
     tempfile = file_to_convert
     tempfile_io = BytesIO()
@@ -38,6 +39,7 @@ def convert_pillow_file(file_to_convert):
     return image_file
 
 
+# converts the Pillow chart file to django image file
 def convert_chart_file(file_to_convert):
     tempfile = file_to_convert
     tempfile_io = BytesIO()
@@ -57,9 +59,10 @@ def convert_pillow_file2(file_to_convert):
     return bg_coverted_file
 
 
+# This method stitches the charts together
 def chart_image_stiching(pi_im_list):
     color = (255, 255, 255)
-    new_im = Image.new(mode='RGBA', size=(600, 600))
+    new_im = Image.new(mode='RGBA', size=(600, 600), color=(255, 255, 255, 0))
     list_of_CO=[(0, 0), (0, 300), (300, 0), (300, 300)]
 
     for pie in pi_im_list:

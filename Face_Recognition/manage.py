@@ -4,7 +4,7 @@ import sys
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Face_Recognition.settings")
-    project_directory = os.path.abspath('..')
+    project_directory = os.path.abspath('..')   # added these two lines for the import modules to work
     sys.path.append(project_directory)
     try:
         from django.core.management import execute_from_command_line
