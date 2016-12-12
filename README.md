@@ -1,4 +1,4 @@
-###### ########Capstone Final Project- Using Django Python
+# Capstone Final Project- Using Django Python
 Face mood analysis
 Detect faces and show the expression chart!
 This application uses Google vision API where you can analyze faces in a picture. This API gives the response back in a Json file which I am using to draw a polygon around the faces found and I have picked up few emotions from the response Json file like ‘JoyLikelyhood’,” SorrowLikelihood’, “SurpriseLikeHood’ and ‘AngerLikeHood’. To display these emotions, I have drawn a pie-chart which shows how happy you are and so on. There are chances where API is not able to detect any face due to very bad resolution or any other reason, I have a default image for that situation and a default chart so that it does not break the application.
