@@ -23,7 +23,7 @@ I am not sure but the API does not detect all the faces and can break the code. 
 •	I need to test the application more to see where it fails and fix the issue. I am sure it’s not 100 % robust right now.
 
 
-•	I want to figure out a way so that I can display as many as charts I want so that people can see it. Right now it’s coded in such a way that it displays only 4 charts or else can break it.
+•	I want to figure out a way so that I can display as many as charts I want so that people can see it. Right now it’s coded in such a way that it displays only 4 charts or else it would appear so small that the user will not be able to see the data on chart.
 
 
 • Last but not the least, I want to use my Raspberry -pi to use the camera and send the pic to the Django server.
