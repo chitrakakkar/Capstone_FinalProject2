@@ -12,6 +12,7 @@ The code is written using Python version 3.4 and Django 1.10.3. The API is a goo
 
 ##Known issues
 I am not sure but the API does not detect all the faces and can break the code. Though I have done some error handling, it can still break the code as the image format dependencies are yet unknown. Needs more testing’s and error handlings.
+
 • One bug I found out yesterday that if the uploaded picture has a resolution more than 720*600, the chart displays the labels twice/thrice. 
 
 
