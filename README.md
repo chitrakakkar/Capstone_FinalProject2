@@ -1,6 +1,6 @@
 # Capstone Final Project- Using Django Python
 
-##The APP:- Face mood analysis
+##The APP:- Dr. Mood
 
 ##The Function:- Detect faces and show the expression chart!
 
